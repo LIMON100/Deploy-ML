@@ -9,3 +9,16 @@
   sudo raspi-config
   
   select the 3.boot option -> b2.control autologin
+
+
+## ubuntu:
+
+  go to startup application
+  
+  click add
+  
+    1. give name
+    
+    2. set path/location write python full path /home/name/anaconda/python3 /full path
+    
+    3. starts python script on OS boot 
