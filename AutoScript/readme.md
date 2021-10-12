@@ -12,6 +12,11 @@ create two files
     python full file path
 
     @pause / exit
+    
+      
+2- .vbs
+
+    CreateObject("Wscript.Shell").Run "full path of .bat", 0, True
 
 
 
