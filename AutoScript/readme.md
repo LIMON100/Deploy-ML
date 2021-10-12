@@ -9,6 +9,15 @@
   sudo raspi-config
   
   select the 3.boot option -> b2.control autologin
+  
+  
+#### if have multiple program.
+  
+  set & sign in last 
+  
+  exple: python3 home/name/.py &
+  
+  abc.py
 
 
 ## ubuntu:
