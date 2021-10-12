@@ -1,5 +1,21 @@
 ## Write autoscript for different systems.
 
+
+## Windows:
+
+create two files
+
+1- .bat
+  
+    @echo off
+
+    python full file path
+
+    @pause / exit
+
+
+
+
 ## Raspberry Pi:
 
   sudo crontab -e
@@ -31,3 +47,9 @@
     2. set path/location write python full path /home/name/anaconda/python3 /full path
     
     3. starts python script on OS boot 
+    
+    
+
+
+
+
