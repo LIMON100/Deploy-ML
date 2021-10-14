@@ -20,6 +20,21 @@ create two files
 
 
 
+3.go to your python file
+
+    import pywintypes
+    
+    from win10toast import ToastNotifier
+    
+    
+    
+4.write below code before start while loop
+
+    toast = ToastNotifier()
+    
+    toast.show_toast("File organizer", "The process has been started", duration = 30)
+
+
 
 ## Raspberry Pi:
 
