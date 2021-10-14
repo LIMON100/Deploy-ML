@@ -47,6 +47,14 @@ create two files
     set Value data: full path of .vbs file
 
     restart computer
+    
+
+
+or goto:
+
+    user->name->appdata->roadming->microsoft->windows->start-menu->programs->startup
+
+    paste the .bat file
 
 
 
