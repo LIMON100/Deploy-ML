@@ -40,13 +40,13 @@ create two files
     
     
     
-5.go to registry:
+5. go to registry:
+  
+    create new string value in run 
 
-create new string value in run 
+    set Value data: full path of .vbs file
 
-set Value data: full path of .vbs file
-
-restart computer
+    restart computer
 
 
 
