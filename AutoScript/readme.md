@@ -33,6 +33,9 @@ create two files
     toast = ToastNotifier()
     
     toast.show_toast("File organizer", "The process has been started", duration = 30)
+    
+    
+    os.chdir("python file full path")
 
 
 
