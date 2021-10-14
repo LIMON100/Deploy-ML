@@ -36,6 +36,18 @@ create two files
     
     
     os.chdir("python file full path")
+    
+    
+    
+    
+5.go to registry:
+
+create new string value in run 
+
+set Value data: full path of .vbs file
+
+restart computer
+
 
 
 
