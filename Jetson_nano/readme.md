@@ -29,3 +29,19 @@ if version is not showing then go to /usr/local and check what version you have.
 Open ~/.bashrc and go to the last and save upper command.
 
     nano ~/.bashr
+    
+    
+#### check status: (instead of nvidia-smi)
+
+Two way you can check the status or can monitor the cpu,gpu and memory uses.
+
+    sudo tegrastats
+    
+The another one is showing the full details of everything.
+
+
+    sudo -H pip3 install -U jetson-stats
+    
+After installing jetson-stats run following command to see the status
+
+    jtop
