@@ -6,3 +6,8 @@
 
 #### camera resolution:
     v4l2-ctl --info -d /dev/video0 --list-formats-ex
+    
+    
+    
+#### open-camera:
+    vgstcapture-1.0 --orientation=2
