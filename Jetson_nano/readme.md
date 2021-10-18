@@ -45,3 +45,6 @@ The another one is showing the full details of everything.
 After installing jetson-stats run following command to see the status
 
     jtop
+
+
+![](https://github.com/LIMON100/Deploy-ML/blob/master/Jetson_nano/images/jetson-stat.PNG?raw=true)
