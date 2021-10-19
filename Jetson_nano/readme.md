@@ -1,7 +1,6 @@
 # Jetson Nano
 
-## Convert to TRT
-
+## <a href="https://github.com/LIMON100/Deploy-ML/tree/master/Jetson_nano/Tensor-RT">Convert Model to Tensor-RT</a>
 
 #### check camera:
     v4l2-ctl --list-devices
