@@ -1,5 +1,6 @@
 ## Tensorrt
 
+Models trained with TensorFlow can be deployed on Jetson Nano in two ways one is either use TensorFlow with TensorRT (TF-TRT) or convert the TensorFlow model to UFF (Universal Framework Format) and generate a TensorRT execution engine from tha
 
 ## Some Problem
 
