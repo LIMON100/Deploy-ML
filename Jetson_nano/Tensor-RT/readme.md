@@ -2,6 +2,8 @@
 
 Models trained with TensorFlow can be deployed on Jetson Nano in two ways one is either use TensorFlow with TensorRT (TF-TRT) or convert the TensorFlow model to UFF (Universal Framework Format) and generate a TensorRT execution engine from that
 
+### Install Tensorrt into AWS(EC2) or local Linux:
+
 ## Some Problem
 
 ### Problem: opencv coredummbed
