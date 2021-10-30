@@ -4,6 +4,22 @@ Models trained with TensorFlow can be deployed on Jetson Nano in two ways one is
 
 ### Install Tensorrt into AWS(EC2) or local Linux:
 
+Download tensorrt from Nvidia with your cuda compatible version.
+
+#### Unpack and install
+    sudo dpkg -i nv-tensorrt-repo-ubuntu1804-cuda11.4-trt8.2.0.6-ea-20210922_1-1_amd64.deb
+    sudo apt-key add /var/nv-tensorrt-repo-ubuntu1804-cuda11.4-trt8.2.0.6-ea-20210922_1-1_amd64/7fa2af80.pub
+    sudo apt-get update
+    sudo apt-get install tensorrt
+    
+    If using Python 3.x:
+    sudo apt-get install python3-libnvinfer-dev
+    
+    python3-libnvinfer
+    sudo apt-get install uff-converter-tf
+    sudo apt-get install onnx-graphsurgeon
+       
+
 ## Some Problem
 
 ### Problem: opencv coredummbed
