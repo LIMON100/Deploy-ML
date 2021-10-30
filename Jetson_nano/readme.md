@@ -60,3 +60,5 @@ After installing jetson-stats run following command to see the status
 ![](https://github.com/LIMON100/Deploy-ML/blob/master/Jetson_nano/images/jetson-stat.PNG?raw=true)
 
 
+## Training Custom data on jetson nano:
+
