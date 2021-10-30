@@ -18,6 +18,18 @@ Download tensorrt from Nvidia with your cuda compatible version.
     python3-libnvinfer
     sudo apt-get install uff-converter-tf
     sudo apt-get install onnx-graphsurgeon
+    
+    Verify the installation.
+    dpkg -l | grep TensorRT
+
+
+#### find tensorrt:
+    sudo find / -name tensorrt 2> /dev/null
+
+#### trouble importing tensorrt: Sometimes it install properly but cannot import. If this type of problem happened then run below command.
+    pip install nvidia-pyindex
+    pip install nvidia-tensorrt
+
        
 
 ## Some Problem
