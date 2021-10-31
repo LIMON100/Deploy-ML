@@ -67,3 +67,4 @@ If you cannot sign in Chromium or sign out after a refresh then you should insta
 
 ## Training Custom data on jetson nano:
 
+If you want to train you custom dataset inside jetson nano then do the following.
