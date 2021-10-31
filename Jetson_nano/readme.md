@@ -69,7 +69,7 @@ If you cannot sign in Chromium or sign out after a refresh then you should insta
 
 If you want to train you custom dataset inside jetson nano then do the following.
 
-Create new separe folder,
+Create new separe folder in jetson-inference/python/training/ssd/data/your-data-folder-name
 
 #### JPEGImages, Imageset, Annotations
 
