@@ -80,3 +80,5 @@ All of your training, validation images of any format.
 #### Imageset
 
 4 different text file. train, test, val, trainval
+
+![](https://github.com/LIMON100/Deploy-ML/blob/master/Jetson_nano/images/jetsotrain.PNG?raw=true)
