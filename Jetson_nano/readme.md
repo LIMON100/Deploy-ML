@@ -79,6 +79,13 @@ All of your training, validation images of any format.
 
 #### Imageset
 
-4 different text file. train, test, val, trainval
+4 different text file. 
+
+train, test, val, trainval
+
+    train - all the train images name without extension
+    test  - test image name without extension
+    val   - val image name without extension
+    trainval - all the train+val image name without extension
 
 ![](https://github.com/LIMON100/Deploy-ML/blob/master/Jetson_nano/images/jetsotrain.PNG?raw=true)
