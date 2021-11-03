@@ -63,6 +63,14 @@ After installing jetson-stats run following command to see the status
 
 ![](https://github.com/LIMON100/Deploy-ML/blob/master/Jetson_nano/images/jetson-stat.PNG?raw=true)
 
+#### Check Tempareture:
+
+    git clone https://github.com/MartinMatta/Jetson-Nano-temperature
+    cd Jetson-Nano-temperature
+    chmod 755 temp.sh
+    
+    ./temp.sh
+
 #### Chromium Browser Sign-out problem:
 
 If you cannot sign in Chromium or sign out after a refresh then you should install chorimum browser and restart the machine
