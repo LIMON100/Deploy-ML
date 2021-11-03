@@ -17,7 +17,7 @@
 
 or run the command,
       
-      python3 open_camera.py
+    python3 open_camera.py
    
    
 #### print architecture:
