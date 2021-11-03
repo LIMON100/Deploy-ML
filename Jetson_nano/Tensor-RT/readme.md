@@ -34,6 +34,10 @@ Download tensorrt from Nvidia with your cuda compatible version.
 
 ## Some Problem
 
+### Problem: AttributeError: 'tensorrt.tensorrt.Builder' object has no attribute 'max_workspace_size(problem of tensorrt version 8. downgrade the version)=>
+
+    pip3 install nvidia-tensorrt==7.2.* --index-url https://pypi.ngc.nvidia.com
+
 ### Problem: opencv coredummbed
 
 Check the numpy version. It causes because of higher numpy version. install numpy 1.19.4
