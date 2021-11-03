@@ -18,13 +18,17 @@
 or run the command,
       
       python3 open_camera.py
+   
+   
+#### print architecture:
+    dpkg --print-architecture
+
+
+#### check jetpack version:
+
+    cat /etc/nv_tegra_release
     
-
-
-
-check jetpack version:
-
-cat /etc/nv_tegra_release
+   
 
 
 #### cuda version:
