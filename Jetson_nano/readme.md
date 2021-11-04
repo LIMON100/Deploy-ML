@@ -99,5 +99,8 @@ train, test, val, trainval
     test  - test image name without extension
     val   - val image name without extension
     trainval - all the train+val image name without extension
+    
+#### Extract image name
+    python extract_image_name.py
 
 ![](https://github.com/LIMON100/Deploy-ML/blob/master/Jetson_nano/images/jetsotrain.PNG?raw=true)
