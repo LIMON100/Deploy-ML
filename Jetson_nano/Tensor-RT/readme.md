@@ -55,3 +55,25 @@ Check the numpy version. It causes because of higher numpy version. install nump
 There is lot to install so check the below link
 
 https://fantashit.com/tensorflow-tensorrt-could-not-load-dynamic-library-libnvinfer-so-5/
+
+
+### Problem: F tensorflow/core/util/device name utils.cc:92] Check failed: Is JobName(job)=>
+
+    diff --git a/tf_download_and_trt_model.py b/tf_download_and_trt_model.py
+    index c5e608c..083f746 100644
+    --- a/tf_download_and_trt_model.py
+    +++ b/tf_download_and_trt_model.py
+    @@ -1,4 +1,4 @@
+    -import tensorflow.contrib.tensorrt as trt
+    +from tensorflow.python.compiler.tensorrt import trt_convert as trt
+     import sys
+     import os
+     try:
+    @@ -19,6 +19,7 @@ print ("Building detection graph from model " + MODEL + "...")
+     frozen_graph, input_names, output_names = build_detection_graph(
+         config=config_path,
+         checkpoint=checkpoint_path,
+    +    force_nms_cpu=False,
+         score_threshold=0.3,
+         #iou_threshold=0.5,
+         batch_size=1
