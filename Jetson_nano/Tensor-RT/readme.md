@@ -60,17 +60,18 @@ https://fantashit.com/tensorflow-tensorrt-could-not-load-dynamic-library-libnvin
 ### Problem: F tensorflow/core/util/device name utils.cc:92] Check failed: Is JobName(job)=>
 
     diff --git a/tf_download_and_trt_model.py b/tf_download_and_trt_model.py
-    index c5e608c..083f746 100644
+   
     --- a/tf_download_and_trt_model.py
     +++ b/tf_download_and_trt_model.py
-    @@ -1,4 +1,4 @@
+    
+    @@@@@@
     -import tensorflow.contrib.tensorrt as trt
     +from tensorflow.python.compiler.tensorrt import trt_convert as trt
      import sys
      import os
      try:
      
-    @@ -19,6 +19,7 @@ print ("Building detection graph from model " + MODEL + "...")
+    @@@@@@ print ("Building detection graph from model " + MODEL + "...")
      frozen_graph, input_names, output_names = build_detection_graph(
          config=config_path,
          checkpoint=checkpoint_path,
