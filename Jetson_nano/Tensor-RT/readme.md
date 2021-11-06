@@ -69,6 +69,7 @@ https://fantashit.com/tensorflow-tensorrt-could-not-load-dynamic-library-libnvin
      import sys
      import os
      try:
+     
     @@ -19,6 +19,7 @@ print ("Building detection graph from model " + MODEL + "...")
      frozen_graph, input_names, output_names = build_detection_graph(
          config=config_path,
