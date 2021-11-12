@@ -6,3 +6,8 @@
     
     
 #### Convert Frozen model to Onnx
+
+
+#### Train Custom Onnx Model
+
+![](https://github.com/LIMON100/Deploy-ML/blob/master/Jetson_nano/images/jetsotrain.PNG?raw=true)
