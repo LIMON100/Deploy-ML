@@ -12,7 +12,7 @@ GPIO.setup(led_pin, GPIO.OUT, initial=GPIO.HIGH)
 
 net = jetson.inference.detectNet(argv=["--model=ssd-mobilenet2.onnx", "--labels=labels.txt", "--input-blob=input_0", "--output-cvg=scores", "--output-bbox=boxes"], threshold=0.5)
 
-camera = jetson.utils.videoSource("/home/mahmudur/Desktop/l1/test2/test_video/t1.mkv")# '/dev/video0' for V4L2
+camera = jetson.utils.videoSource("t1.mkv")# '/dev/video0' for V4L2
 display = jetson.utils.videoOutput("display://0") # 'my_video.mp4' for file
 
 while display.IsStreaming():
