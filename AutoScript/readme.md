@@ -114,6 +114,10 @@ or goto:
   sudo reboot
 
   systemctl status sample.service
+  
+  
+  
+### Option-2
 
   go to startup application
   
