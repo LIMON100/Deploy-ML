@@ -82,38 +82,39 @@ or goto:
 ## ubuntu:
 
 ### Systemd
-  sudo nano /lib/systemd/system/sample.service
 
-  Add in the following text :
+    sudo nano /lib/systemd/system/sample.service
 
-  [Unit]
-  Description=My Sample Service
-  After=multi-user.target
+    Add in the following text :
 
-  [Service]
-  Type=idle
-  ExecStart=/usr/bin/python /home/pi/sample.py
+    [Unit]
+    Description=My Sample Service
+    After=multi-user.target
 
-  [Install]
-  WantedBy=multi-user.target
+    [Service]
+    Type=idle
+    ExecStart=/usr/bin/python /home/pi/sample.py
+
+    [Install]
+    WantedBy=multi-user.target
 
 
 
 
-  ExecStart=/usr/bin/python /home/pi/sample.py > /home/pi/sample.log 2>&1
-  The permission on the unit file needs to be set to 644 :
+    ExecStart=/usr/bin/python /home/pi/sample.py > /home/pi/sample.log 2>&1
+    The permission on the unit file needs to be set to 644 :
 
-  sudo chmod 644 /lib/systemd/system/sample.service
-  Step 2 – Configure systemd
-  Now the unit file has been defined we can tell systemd to start it during the boot sequence :
+    sudo chmod 644 /lib/systemd/system/sample.service
+    Step 2 – Configure systemd
+    Now the unit file has been defined we can tell systemd to start it during the boot sequence :
 
-  sudo systemctl daemon-reload
-  sudo systemctl enable sample.service
-  Reboot the Pi and your custom service should run:
+    sudo systemctl daemon-reload
+    sudo systemctl enable sample.service
+    Reboot the Pi and your custom service should run:
 
-  sudo reboot
+    sudo reboot
 
-  systemctl status sample.service
+    systemctl status sample.service
   
   
   
