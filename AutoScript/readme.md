@@ -105,8 +105,8 @@ or goto:
     The permission on the unit file needs to be set to 644 :
 
     sudo chmod 644 /lib/systemd/system/sample.service
-    Step 2 – Configure systemd
-    Now the unit file has been defined we can tell systemd to start it during the boot sequence :
+    
+#### Configure systemd
 
     sudo systemctl daemon-reload
     sudo systemctl enable sample.service
