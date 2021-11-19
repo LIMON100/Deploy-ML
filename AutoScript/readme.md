@@ -97,12 +97,14 @@ or goto:
 
     [Install]
     WantedBy=multi-user.target
-
+    
+Save and exit the editor
 
 
 
     ExecStart=/usr/bin/python /home/pi/sample.py > /home/pi/sample.log 2>&1
-    The permission on the unit file needs to be set to 644 :
+    
+The permission on the unit file needs to be set to 644 :
 
     sudo chmod 644 /lib/systemd/system/sample.service
     
