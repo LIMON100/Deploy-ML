@@ -115,6 +115,9 @@ The permission on the unit file needs to be set to 644 :
     Reboot the Pi and your custom service should run:
 
     sudo reboot
+    
+    
+After reboot check the staus the service is active or not
 
     systemctl status sample.service
   
