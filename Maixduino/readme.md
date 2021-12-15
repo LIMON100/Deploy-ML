@@ -7,3 +7,6 @@
 3. Configure with kFlash
 
 4. Go to maixpy Ide -> Tools -> select-board -> Select Sipped Maixduino
+
+
+## Train .kmodel with Yolo/SSD
