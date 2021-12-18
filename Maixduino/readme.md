@@ -16,3 +16,7 @@
 
 
 ## Train .kmodel with Yolo/SSD
+
+    pip install git+https://github.com/AIWintermuteAI/aXeleRate
+
+    git clone https://github.com/AIWintermuteAI/aXeleRate.git
