@@ -28,3 +28,6 @@ Go to config folder and choose one json file and change the image train +val dir
     onfigs/custom_file.json
     
     python3 axelerate/train.py -c configs/custom_model.json
+
+
+## Convert .onnx model to .kmodel
