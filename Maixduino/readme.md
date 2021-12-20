@@ -31,3 +31,6 @@ Go to config folder and choose one json file and change the image train +val dir
 
 
 ## Convert .onnx model to .kmodel
+
+
+## Convert pytorch model to .kmodel
