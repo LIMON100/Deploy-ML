@@ -43,3 +43,4 @@ Go to config folder and choose one json file and change the image train +val dir
 ### Solution
 
     1. Check the label name put correctly
+    2. Check the annotation label is correct
