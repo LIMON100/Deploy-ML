@@ -41,3 +41,5 @@ Go to config folder and choose one json file and change the image train +val dir
 ## xml.etree.elementtree.parseerror: syntax error: line 1, column 0
 
 ### Solution
+
+    1. Check the label name put correctly
