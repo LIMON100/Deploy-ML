@@ -1,6 +1,6 @@
 # Maixduino
 
-### Download 
+### Download  
     Maixpy IDE
     KFLASH_GUI
 
