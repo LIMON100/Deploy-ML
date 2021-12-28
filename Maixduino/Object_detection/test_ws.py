@@ -17,11 +17,11 @@ sensor.set_vflip(1)
 sensor.run(1)
 
 classes = ["road","sidewalk","bike-lane","bike-symbol","lama"]
-#task = kpu.load("/sd/custom_model.kmodel")
-task = kpu.load(0x500000)
+task = kpu.load("/sd/da.kmodel")
+#task = kpu.load(0x500000)
 a = kpu.set_outputs(task, 0, 7,7,50)
-anchor = (0.57273, 0.677385, 1.87446, 2.06253, 3.33843, 5.47434, 7.88282, 3.52778, 9.77052, 9.16828)
-#anchor = (1.889, 2.5245, 2.9465, 3.94056, 3.99987, 5.3658, 5.155437, 6.92275, 6.718375, 9.01025)
+#anchor = (0.57273, 0.677385, 1.87446, 2.06253, 3.33843, 5.47434, 7.88282, 3.52778, 9.77052, 9.16828)
+anchor = (1.889, 2.5245, 2.9465, 3.94056, 3.99987, 5.3658, 5.155437, 6.92275, 6.718375, 9.01025)
 a = kpu.init_yolo2(task, 0.5, 0.3, 5, anchor)
 clock=time.clock()
 
@@ -68,11 +68,11 @@ while(True):
 
         if classes[i.classid()] == "sidewalk":
 
-            print("Inside sidewalk..................")
+            print("sidewalk..................")
             sw_count = sw_count+1
-            if sw_count ==20:
+            if sw_count == 20:
                 sw_count = 0
-                    # init audio
+                
                 player = audio.Audio(path="6.wav")
                 player.volume(100)
                 
@@ -94,6 +94,9 @@ while(True):
                         print("end")
                         break
                 player.finish()
+            
+            if classes[i.classid()] == "lama":
+                print("lama.................................")
 
         else:
             a = lcd.display(img)
