@@ -11,3 +11,7 @@
 #### Train Custom Onnx Model
 
 ![](https://github.com/LIMON100/Deploy-ML/blob/master/Jetson_nano/images/jetsotrain.PNG?raw=true)
+
+
+## Modify code according to your needs
+    python custom_code.py
