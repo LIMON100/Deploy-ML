@@ -17,6 +17,8 @@
 
 ## Train .kmodel with Yolo/SSD
 
+### Setup for 'recall' matric
+
     pip install git+https://github.com/AIWintermuteAI/aXeleRate
 
     git clone https://github.com/AIWintermuteAI/aXeleRate.git
