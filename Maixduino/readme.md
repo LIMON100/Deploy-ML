@@ -24,6 +24,12 @@
     git clone https://github.com/AIWintermuteAI/aXeleRate.git
 
 
+### Setup for 'mAP' matric
+
+    pip install axelerate==0.7.0
+    
+    git clone -b legacy-yolov2 https://github.com/AIWintermuteAI/aXeleRate.git
+
 
 Go to config folder and choose one json file and change the image train +val directory
 
