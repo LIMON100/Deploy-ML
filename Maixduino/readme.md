@@ -29,6 +29,9 @@
     pip install axelerate==0.7.0
     
     git clone -b legacy-yolov2 https://github.com/AIWintermuteAI/aXeleRate.git
+    
+ 
+If pip install cannot install axelerate with brach "legacy-yolov2" then copy all files inside the axelerate->axelerate and paste it where the axelerate installed.
 
 
 Go to config folder and choose one json file and change the image train +val directory
