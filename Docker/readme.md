@@ -12,11 +12,15 @@ A Docker container is a virtualized run-time environment where users can isolate
 A container is, ultimately, just a running image. Once you create a container, it adds a writable layer on top of the immutable image, meaning you can now modify it.
 
 
-From node:12.16.3 (node version build with docker)/ Ubuntu linux - Base Image
+### Docker Image
 
-COPY package.json /code/package.json - 
+FROM node:12.16.3 (node version build with docker)/ Ubuntu linux - Base Image
+
+COPY package.json /code/package.json - All files into a specific particular location which is present inside docker image
+
+EXPOSE 4002/80
 WORKDIR /code (working directory)
-ENV PORT 4002/80
+
 
 RUN npm install
 COPY . /code
