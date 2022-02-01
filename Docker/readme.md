@@ -14,15 +14,15 @@ A container is, ultimately, just a running image. Once you create a container, i
 
 ### Docker Image
 
-FROM node:12.16.3 (node version build with docker)/ Ubuntu linux - Base Image
+    FROM node:12.16.3 (node version build with docker)/ Ubuntu linux - Base Image
 
-COPY package.json /code/package.json - All files into a specific particular location which is present inside docker image
+    COPY package.json /code/package.json - All files into a specific particular location which is present inside docker image
 
-EXPOSE 4002/80
+    EXPOSE 4002/80
 
-WORKDIR /code (working directory) - Same file where all files are located
+    WORKDIR /code (working directory) - Same file where all files are located
 
 
-RUN pip install -r requiremets.txt
+    RUN pip install -r requiremets.txt
 
-CMD python app.py
+    CMD python app.py
