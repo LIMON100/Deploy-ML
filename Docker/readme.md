@@ -26,3 +26,9 @@ A container is, ultimately, just a running image. Once you create a container, i
     RUN pip install -r requiremets.txt
 
     CMD python app.py
+
+
+
+### Build docker image
+
+    docker build -t helmet_api .
