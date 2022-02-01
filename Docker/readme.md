@@ -32,3 +32,8 @@ A container is, ultimately, just a running image. Once you create a container, i
 ### Build docker image
 
     docker build -t helmet_api .
+
+
+### Run docker image
+
+    dokcer run -p 8000:8000 helmet_api
