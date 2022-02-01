@@ -19,9 +19,10 @@ FROM node:12.16.3 (node version build with docker)/ Ubuntu linux - Base Image
 COPY package.json /code/package.json - All files into a specific particular location which is present inside docker image
 
 EXPOSE 4002/80
-WORKDIR /code (working directory)
+
+WORKDIR /code (working directory) - Same file where all files are located
 
 
-RUN npm install
-COPY . /code
-CMD [ "node", "src/server.js" ]
+RUN pip install -r requiremets.txt
+
+CMD python app.py
