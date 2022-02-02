@@ -41,10 +41,10 @@ A container is, ultimately, just a running image. Once you create a container, i
  
 ### Move docker to another folder
 
-1. open cmd as administrative
-2. wsl --shutdown
-3. wsl -l -v
-4. wsl --export docker-desktop-data H:\doc\dockerdesk.tar
-5. wsl --unregister docker-desktop-data
-6. wsl -l
-7. wsl --import docker-desktop-data H:\doc\ddesktop H:\doc\dockerdesk.tar 
+    1. open cmd as administrative
+    2. wsl --shutdown
+    3. wsl -l -v
+    4. wsl --export docker-desktop-data H:\doc\dockerdesk.tar
+    5. wsl --unregister docker-desktop-data
+    6. wsl -l
+    7. wsl --import docker-desktop-data H:\doc\ddesktop H:\doc\dockerdesk.tar 
