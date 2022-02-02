@@ -38,6 +38,14 @@ A container is, ultimately, just a running image. Once you create a container, i
 
     dokcer run -p 8000:8000 helmet_api
  
+
+### Delete docker image
+
+    First delete the container 
+    docker rm container-id
+    
+    Delete the docker-image
+    docker rmi image-id
  
 ### Move docker to another folder
 
