@@ -37,3 +37,14 @@ A container is, ultimately, just a running image. Once you create a container, i
 ### Run docker image
 
     dokcer run -p 8000:8000 helmet_api
+ 
+ 
+### Move docker to another folder
+
+1. open cmd as administrative
+2. wsl --shutdown
+3. wsl -l -v
+4. wsl --export docker-desktop-data H:\doc\dockerdesk.tar
+5. wsl --unregister docker-desktop-data
+6. wsl -l
+7. wsl --import docker-desktop-data H:\doc\ddesktop H:\doc\dockerdesk.tar 
