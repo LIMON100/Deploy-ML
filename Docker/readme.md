@@ -55,4 +55,13 @@ A container is, ultimately, just a running image. Once you create a container, i
     4. wsl --export docker-desktop-data H:\doc\dockerdesk.tar
     5. wsl --unregister docker-desktop-data
     6. wsl -l
-    7. wsl --import docker-desktop-data H:\doc\ddesktop H:\doc\dockerdesk.tar 
+    7. wsl --import docker-desktop-data H:\doc\ddesktop H:\doc\dockerdesk.tar
+    
+ 
+### problem:
+
+ImportError: libgthread-2.0.so.0: cannot open shared object file: No such file or directory when importing cv2 using Docker container
+
+#### Solution
+
+https://stackoverflow.com/questions/53328226/im-unable-to-install-opencv-contrib-python-in-docker
