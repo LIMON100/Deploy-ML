@@ -37,6 +37,10 @@ A container is, ultimately, just a running image. Once you create a container, i
 ### Run docker image
 
     dokcer run -p 8000:8000 helmet_api
+    
+or
+
+    docker start "contanier_id"
  
 
 ### Delete docker image
