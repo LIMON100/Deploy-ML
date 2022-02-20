@@ -50,9 +50,6 @@ Go to config folder and choose one json file and change the image train +val dir
 ## Convert pytorch model to .kmodel
 
 
-## Maixp Compilation
-
-
 # Problem:
 
 ## xml.etree.elementtree.parseerror: syntax error: line 1, column 0
@@ -62,3 +59,15 @@ Go to config folder and choose one json file and change the image train +val dir
     1. Check the label name put correctly
     2. Check the annotation label is correct
     3. Check inside annotation folder is there any other file (Sometimes after copy the zip file and unzip it there remains an extra file e.x(desktop.ini))
+
+
+
+# Maixp Compilation
+
+# Problem in compilation
+
+## 1. Permission denied
+
+### Solution
+
+    sudo chmod 666 /dev/ttyS0
