@@ -66,7 +66,7 @@ Go to config folder and choose one json file and change the image train +val dir
 
 # Problem in compilation
 
-## 1. Permission denied
+## 1. Permission denied(Attempting to use a port that is not open)
 
 ### Solution
 
