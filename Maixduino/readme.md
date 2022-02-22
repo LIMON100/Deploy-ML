@@ -71,3 +71,7 @@ Go to config folder and choose one json file and change the image train +val dir
 ### Solution
 
     sudo chmod 666 /dev/ttyS0
+
+check available port 
+    
+    ls /dev
