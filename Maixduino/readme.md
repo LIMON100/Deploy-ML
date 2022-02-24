@@ -15,6 +15,8 @@
 4. Go to maixpy Ide -> Tools -> select-board -> Select Sipped Maixduino
 
 
+# Object-Detection
+
 ## Train .kmodel with Yolo/SSD
 
 ### Setup for 'recall' matric
@@ -49,6 +51,7 @@ Go to config folder and choose one json file and change the image train +val dir
 
 ## Convert pytorch model to .kmodel
 
+# Segmentation
 
 # Problem:
 
