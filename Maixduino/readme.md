@@ -69,7 +69,7 @@ Go to config folder and choose one json file and change the image train +val dir
 
 To install any default firmware go to below link,
 
-Install custom firmware
+Install custom library with firmware
 
 # Problem in compilation
 
