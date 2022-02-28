@@ -42,6 +42,8 @@ Go to config folder and choose one json file and change the image train +val dir
     
     python3 axelerate/train.py -c configs/custom_model.json
 
+## Train yolov3/tiny_yolo
+
 
 ## Convert .onnx model to .kmodel
 
