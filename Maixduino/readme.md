@@ -17,7 +17,7 @@
 
 # Object-Detection
 
-## Train .kmodel with Yolo/SSD
+## Train .kmodel with Yolo2/SSD
 
 ### Setup for 'recall' matric
 
@@ -62,6 +62,11 @@ Go to config folder and choose one json file and change the image train +val dir
     1. Check the label name put correctly
     2. Check the annotation label is correct
     3. Check inside annotation folder is there any other file (Sometimes after copy the zip file and unzip it there remains an extra file e.x(desktop.ini))
+    
+
+## 'str' object has no attribute 'decode'
+
+    pip install 'h5py==2.10.0' --force-reinstall
 
 
 
