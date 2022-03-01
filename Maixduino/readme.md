@@ -45,6 +45,10 @@ Go to config folder and choose one json file and change the image train +val dir
 ## Train yolov3/tiny_yolo
 
 
+### Convert to tflite
+
+### Convert model into kmodel
+
 ## Convert .onnx model to .kmodel
 
     convert to .tflite
