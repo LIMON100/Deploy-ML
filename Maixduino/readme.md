@@ -51,7 +51,16 @@ Go to config folder and choose one json file and change the image train +val dir
 
 
 
-#### Convert using nncase
+### Convert using nncase
+
+#### Problem:
+
+    Conan "No such file or directory"
+    
+    
+### Solution:
+
+    source ~/.profile
 
 
 ### Convert to tflite
