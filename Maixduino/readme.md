@@ -44,10 +44,9 @@ Go to config folder and choose one json file and change the image train +val dir
 
 ## Train yolov3/tiny_yolo
 
-    For object detection or classification it is good to make a dataset based on the model input size. 
-    Different resolution data can be added but it must not exceed (20-25)%.
+    1. For object detection or classification it is good to make a dataset based on the model input size. Different resolution data can be added but it must not exceed (20-25)%.
 
-    Put different position and lighting condition datasets.
+    2. Put different position and lighting condition datasets.
 
 
 
