@@ -60,6 +60,8 @@ Some parameters
 #### Solution
     
      Reduce batch_size
+     
+     Check the train/val folder image size(no_of_images)
 
 
 ### Convert using nncase
