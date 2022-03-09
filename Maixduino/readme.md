@@ -55,6 +55,12 @@ Some parameters
 
 
 
+#### Problem: (ValueError: Empty training data)
+
+#### Solution
+    
+     Reduce batch_size
+
 
 ### Convert using nncase
 
