@@ -121,6 +121,6 @@ Install custom library with firmware
 
     sudo chmod 666 /dev/ttyS0
 
-check available port 
+check available port in the cloud or local
     
     ls /dev
