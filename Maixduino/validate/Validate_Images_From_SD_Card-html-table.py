@@ -32,41 +32,77 @@ import time
 import uos
 import os
 
-#12 35 41
+
+
 #lcd.init(freq=15000000)
 
-classes = ["road","sidewalk"]
+#classes = ["road","sidewalk"]
+#classes = ["With Helmet","Without Helmet"]
+classes = ["With Helmet","Without Helmet","Helmet", "Chin_Strap"]
 #task = kpu.load("/sd/sidewalkyolo.kmodel")
 task = kpu.load(0x500000)
 
-#a = kpu.set_outputs(task, 0, 7,10,35)
+#a = kpu.set_outputs(task, 0, 7,10,35) #mobilenet
 #a = kpu.set_outputs(task, 0, 7,7,50)
-#a = kpu.set_outputs(task, 0, 7,7,35)
-a = kpu.set_outputs(task, 0, 7,7,21)
+a = kpu.set_outputs(task, 0, 7,7,35)
+#a = kpu.set_outputs(task, 0, 7,7,21) #yolov3
 
 anchor = (1.889, 2.5245, 2.9465, 3.94056, 3.99987, 5.3658, 5.155437, 6.92275, 6.718375, 9.01025)
 
-a = kpu.init_yolo2(task, 0.6, 0.6, 5, anchor)
+a = kpu.init_yolo2(task, 0.6, 0.3, 5, anchor)
 clock=time.clock()
 results = []
-source = "/sd/test224" #source224 test224
+source = "/sd/hc224" #source224 test224 good_images_part-1 himages
 temp = "/sd/temp"
-dest = "/sd/test-dest" #destination test-dest
+dest = "/sd/destination" #destination test-dest
 out = "/sd/out-txt"
-max_count = 10
+max_count = 31 # 999 699 499 299 2040
 start_count = 0
 results2 = []
+
+#not supported 1
+f_html=open("/sd/destination/output_images_chin_strap_v0.0.3.html", "a")
+
+def write_text_to_html():
+
+    message2='''
+    <html>
+    <head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            }
+
+            td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+            }
+
+            tr:nth-child(even) {
+
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Information</h2>
+        <table>
+
+    '''
+
+    f_html.write(message2)
 
 def generate_text_file_for_log():
 
     log_file_name = "log_information"
-    date = "25-03-22"
+    date = "22-04-2022"
     author_name = "limon"
     machine_name = uos.uname()[3]
     firmware = "maixpy_v0.6.2_72_g22a8555b5_minimum_with_kmodel_v4_support.bin"
     model_version = "kmodlV4"
     anchors = (1.889, 2.5245, 2.9465, 3.94056, 3.99987, 5.3658, 5.155437, 6.92275, 6.718375, 9.01025)
-    model_size = "2.17 MB"
+    model_size = "1.81 MB"
 
     dict_info = {"Date": date, "Author name": author_name, "Machine name": machine_name, "Firmware": firmware, "Model version": model_version, "Anchors": anchors, "Model sizee": model_size}
 
@@ -86,8 +122,29 @@ def generate_text_file_for_log():
 
     file.close()
 
+    write_text_to_html()
 
-    #convert_text_to_log(file_path)
+    f_html.write("<tr><th>" + "Date" + "</th>")
+    f_html.write("<th>" +str(date) + "</th></tr>")
+    f_html.write("<tr><th>" + "Author_name" + "</th>")
+    f_html.write("<th>" +str(author_name) + "</th></tr>")
+    f_html.write("<tr><th>" + "machine_name" + "</th>")
+    f_html.write("<th>" +str(machine_name) + "</th></tr>")
+    f_html.write("<tr><th>" + "firmware" + "</th>")
+    f_html.write("<th>" +str(firmware) + "</th></tr>")
+    f_html.write("<tr><th>" + "model_version" + "</th>")
+    f_html.write("<th>" +str(model_version) + "</th></tr>")
+    f_html.write("<tr><th>" + "anchors" + "</th>")
+    f_html.write("<th>" +str(anchors) + "</th></tr>")
+    f_html.write("<tr><th>" + "Confidence level" + "</th>")
+    f_html.write("<th>" +str(0.6) + "</th></tr>")
+    f_html.write("<tr><th>" + "Non-max suppresion(nms)" + "</th>")
+    f_html.write("<th>" +str(0.3) + "</th></tr>")
+    f_html.write("<tr><th>" + "model_size" + "</th>")
+    f_html.write("<th>" +str(model_size) + "</th></tr>")
+
+    f_html.write("</table>")
+
 
 def save_detection_info(filename, i):
     file_path = "/sd/" + "bounding_boxes_with_filename" + ".txt"
@@ -102,11 +159,10 @@ def save_detection_info(filename, i):
     f.write("\n")
     f.close()
 
-f_html=open("/sd/test-dest/output_images.html", "w")
+#f_html=open("/sd/test-dest/output_images.html", "a")
 
 def make_html():
 
-    #f=open("/sd/destination/output_images.html", "w")
     message='''
     <html>
     <head>
@@ -137,20 +193,8 @@ def make_html():
     '''
 
     f_html.write(message)
-    #f.close()
-
-#def draw_string(img, x, y, text, color, scale, bg=None , full_w = False):
-    #if bg:
-        #if full_w:
-            #full_w = img.width()
-        #else:
-            #full_w = len(text)*8*scale+4
-        #img.draw_rectangle(x-2,y-2, full_w, 16*scale, fill=True, color=bg)
-    #img = img.draw_string(x, y, text, color=color,scale=scale)
-    #return img
 
 
-#</tr></table>
 
 def view_free_memory(msg):
     print("Msg: ",msg,"- GC Mem:",gc.mem_free() / 1024,"Heap mem: {}", Maix.utils.heap_free() / 1024) # stack mem
@@ -158,6 +202,11 @@ def view_free_memory(msg):
 def main():
     generate_text_file_for_log()
     image_count=start_count
+
+    road_class = 0
+    sidewalk_class = 0
+    none_class = 0
+
     while(True):
         if image_count > max_count:
             break
@@ -165,11 +214,11 @@ def main():
             filename = source + "/" + str(image_count) + ".jpg"
             filename2 = filename.split('/')[-1]
             filename3 = filename2.split('.')[-2]
-            print(filename)
+            #print(filename)
             view_free_memory("Before Img Load to FB")
             img = image.Image(filename).to_rgb565(copy_to_fb=True)
             #lcd.display(img)
-            print("load the picture")
+            #print("load the picture")
             a = img.pix_to_ai()
 
             view_free_memory("After pic to AI")
@@ -180,11 +229,12 @@ def main():
             gc.collect()
 
             if code:
-                print(filename)
+                #print(filename)
                 for i in code:
                     #print(i)
                     #print("x= {}, y={}, class={}",i.x(),i.y(), classes[i.classid()])
                     save_detection_info(filename2, i)
+                    #print(classes[i.classid()])
 
                     results2 = []
                     left = int(i.x())
@@ -194,6 +244,17 @@ def main():
 
                     #if right > 320:
                         #right = 320
+
+                    if classes[i.classid()] == "Helmet":
+                        road_class += 1
+                        #cls_name = str("With_Helmet")
+                        #results2.append(cls_name)
+
+                    elif classes[i.classid()] == "Chin_Strap":
+                        sidewalk_class += 1
+                        #cls_name = str("Without_Helmet")
+                        #results2.append(cls_name)
+
 
                     results2.append(classes[i.classid()])
                     results2.append(i.value())
@@ -209,14 +270,38 @@ def main():
                     f.write('\n')
                     f.close()
             else:
-
+                none_class += 1
                 print("No objects detected on",filename)
 
 
             del img
             gc.collect()
-            print("In Obj rec loop")
+            #print("In Obj rec loop")
             image_count += 1
+
+    Total_images = image_count
+    road_classes = road_class
+    sidewalk_classes = sidewalk_class
+    No_count = Total_images - road_class - sidewalk_class
+
+    message_cnt = "<pre><h1>" + "Count detected and non detected images" + "</h1></pre> <br>\n"
+    f_html.write(message_cnt)
+
+    f_html.write("<table>")
+
+    f_html.write("<tr><th>" + "Total Images" + "</th>")
+    f_html.write("<th>" +str(Total_images) + "</th></tr>")
+
+    f_html.write("<tr><th>" + "With Helmet detected" + "</th>")
+    f_html.write("<th>" +str(road_classes) + "</th></tr>")
+
+    f_html.write("<tr><th>" + "Without Helmet detected" + "</th>")
+    f_html.write("<th>" +str(sidewalk_classes) + "</th></tr>")
+
+    f_html.write("<tr><th>" + "No detection" + "</th>")
+    f_html.write("<th>" +str(none_class) + "</th></tr>")
+
+    f_html.write("</table>")
 
     a = kpu.deinit(task)
     image_count =start_count
@@ -248,11 +333,11 @@ def main():
                     #new_tuple = tuple(new_rect)
 
                     #i.objnum()
-                    if classes[i.classid()] == "road":
+                    if classes[i.classid()] == "Helmet":
                         a = img.draw_rectangle(i.rect(), color = (0, 255, 0))
                         a = img.draw_string(i.x(),i.y(), classes[i.classid()] + (" \n %2.1fconf" % (i.value())), color=(0,0,0), scale=1)
 
-                    elif classes[i.classid()] == "sidewalk":
+                    elif classes[i.classid()] == "Chin_Strap":
                         a = img.draw_rectangle(i.rect(), color = (255, 0, 0))
                         a = img.draw_string(i.x(),i.y(), classes[i.classid()] + (" \n %2.1fconf" % (i.value())), color=(0,0,0), scale=1)
 
@@ -265,7 +350,7 @@ def main():
                     f_html.write("<th>" + '<a><img src="'+ str(image_count) + ".jpg"+'"></a>' + "</th>")
                     f_html.write("</tr>")
             else:
-                print("Result empty")
+                #print("Result empty")
                 f_html.write("<tr><th>" + str(image_count) + "</th>")
                 f_html.write("<th>" + "N/A" + "</th>")
                 f_html.write("<th>" + "N/A" + "</th>")
@@ -275,13 +360,15 @@ def main():
                 f_html.write("</tr>")
 
             path2 = dest + "/"  + str(image_count) + ".jpg"
-            #img = draw_string(img, 2, 200, "Limon", color=lcd.WHITE,scale=1, bg=lcd.RED)
             img.save(path2, quality=95)
+
+
+            #img = draw_string(img, 2, 200, "Limon", color=lcd.WHITE,scale=1, bg=lcd.RED)
 
             #f_html.write("<th>" + '<a><img src="'+ str(image_count) + ".jpg"+'"></a>' + "</th>")
             #f_html.write("</tr>")
 
-            #message2='<a><img src="'+ str(image_count) + ".jpg"+'"></a>'
+            message2='<a><img src="'+ str(image_count) + ".jpg"+'"></a>'
 
             #message='<tr><th>image_count &nbsp</th><th>x: 23 y: 21 &nbsp</th><th>w: 16222 h: 221 &nbsp</th><th>1 &nbsp</th><th>0.8518897 &nbsp </th><th><a><img src="'+ str(image_count) + ".jpg"+'"></a>&nbsp &nbsp</th></tr>'
 
@@ -290,7 +377,7 @@ def main():
             del img
             gc.collect()
 
-            print("In annotation loop")
+            #print("In annotation loop")
             image_count += 1
 
     #make_html()
