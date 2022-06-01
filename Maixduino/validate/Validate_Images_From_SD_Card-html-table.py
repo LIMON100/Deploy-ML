@@ -33,35 +33,40 @@ import uos
 import os
 
 
+with open("/sd/helmet_classes2.txt") as f:
+    classes = f.readlines()
 
-#lcd.init(freq=15000000)
+for i in range(len(classes)):
+    if classes[i][-1] == '\n':
+        classes[i] = classes[i][:-2]
+    else:
+        classes[i] = classes[i]
 
-#classes = ["road","sidewalk"]
-#classes = ["With Helmet","Without Helmet"]
-classes = ["With Helmet","Without Helmet","Helmet", "Chin_Strap"]
-#task = kpu.load("/sd/sidewalkyolo.kmodel")
+#classes = ["With Helmet","Without Helmet","Helmet", "Chin_Strap"]
+
 task = kpu.load(0x500000)
 
 #a = kpu.set_outputs(task, 0, 7,10,35) #mobilenet
 #a = kpu.set_outputs(task, 0, 7,7,50)
-a = kpu.set_outputs(task, 0, 7,7,35)
+a = kpu.set_outputs(task, 0, 7,7,45)
+#a = kpu.set_outputs(task, 0, 2,2,45)
 #a = kpu.set_outputs(task, 0, 7,7,21) #yolov3
 
 anchor = (1.889, 2.5245, 2.9465, 3.94056, 3.99987, 5.3658, 5.155437, 6.92275, 6.718375, 9.01025)
 
-a = kpu.init_yolo2(task, 0.6, 0.3, 5, anchor)
+a = kpu.init_yolo2(task, 0.5, 0.4, 5, anchor)
 clock=time.clock()
 results = []
-source = "/sd/hc224" #source224 test224 good_images_part-1 himages
+source = "/sd/images" # ozgun_img valid2
 temp = "/sd/temp"
-dest = "/sd/destination" #destination test-dest
-out = "/sd/out-txt"
-max_count = 31 # 999 699 499 299 2040
+dest = "/sd/destination" # destination_ei destination_himages destination_testhelmet224
+out = "/sd/out-txt" # out-txt_himages out-txt_testhelmet224
+max_count = 172 # 70 167
 start_count = 0
 results2 = []
 
-#not supported 1
-f_html=open("/sd/destination/output_images_chin_strap_v0.0.3.html", "a")
+det_counter_per_class = {}
+f_html=open("/sd/destination/output_images_4testhelmetnewdata18_05.html", "a")
 
 def write_text_to_html():
 
@@ -96,7 +101,7 @@ def write_text_to_html():
 def generate_text_file_for_log():
 
     log_file_name = "log_information"
-    date = "22-04-2022"
+    date = "19-05-2022"
     author_name = "limon"
     machine_name = uos.uname()[3]
     firmware = "maixpy_v0.6.2_72_g22a8555b5_minimum_with_kmodel_v4_support.bin"
@@ -159,7 +164,6 @@ def save_detection_info(filename, i):
     f.write("\n")
     f.close()
 
-#f_html=open("/sd/test-dest/output_images.html", "a")
 
 def make_html():
 
@@ -205,6 +209,8 @@ def main():
 
     road_class = 0
     sidewalk_class = 0
+    helmet = 0
+    chin_strap = 0
     none_class = 0
 
     while(True):
@@ -217,8 +223,8 @@ def main():
             #print(filename)
             view_free_memory("Before Img Load to FB")
             img = image.Image(filename).to_rgb565(copy_to_fb=True)
-            #lcd.display(img)
-            #print("load the picture")
+
+            #img.lens_corr(1.8, 1.3)
             a = img.pix_to_ai()
 
             view_free_memory("After pic to AI")
@@ -245,16 +251,11 @@ def main():
                     #if right > 320:
                         #right = 320
 
-                    if classes[i.classid()] == "Helmet":
-                        road_class += 1
-                        #cls_name = str("With_Helmet")
-                        #results2.append(cls_name)
+                    if classes[i.classid()] in det_counter_per_class:
+                        det_counter_per_class[classes[i.classid()]] += 1
+                    else:
 
-                    elif classes[i.classid()] == "Chin_Strap":
-                        sidewalk_class += 1
-                        #cls_name = str("Without_Helmet")
-                        #results2.append(cls_name)
-
+                        det_counter_per_class[classes[i.classid()]] = 1
 
                     results2.append(classes[i.classid()])
                     results2.append(i.value())
@@ -269,77 +270,79 @@ def main():
                     f.write(" ".join(map(lambda x: str(x), results2)))
                     f.write('\n')
                     f.close()
+                #a = lcd.display(img)
             else:
                 none_class += 1
                 print("No objects detected on",filename)
+                #a = lcd.display(img)
 
 
             del img
             gc.collect()
-            #print("In Obj rec loop")
             image_count += 1
 
-    Total_images = image_count
-    road_classes = road_class
-    sidewalk_classes = sidewalk_class
-    No_count = Total_images - road_class - sidewalk_class
-
+    No_count = 0
     message_cnt = "<pre><h1>" + "Count detected and non detected images" + "</h1></pre> <br>\n"
     f_html.write(message_cnt)
 
     f_html.write("<table>")
 
     f_html.write("<tr><th>" + "Total Images" + "</th>")
-    f_html.write("<th>" +str(Total_images) + "</th></tr>")
+    f_html.write("<th>" +str(max_count) + "</th></tr>")
 
-    f_html.write("<tr><th>" + "With Helmet detected" + "</th>")
-    f_html.write("<th>" +str(road_classes) + "</th></tr>")
+    for key, value in det_counter_per_class.items():
+        No_count += value
 
-    f_html.write("<tr><th>" + "Without Helmet detected" + "</th>")
-    f_html.write("<th>" +str(sidewalk_classes) + "</th></tr>")
+        f_html.write("<tr><th>" + str(key) + "</th>")
+        f_html.write("<th>" +str(value) + "</th></tr>")
 
-    f_html.write("<tr><th>" + "No detection" + "</th>")
-    f_html.write("<th>" +str(none_class) + "</th></tr>")
 
     f_html.write("</table>")
+
 
     a = kpu.deinit(task)
     image_count =start_count
     print("End Obj Detect")
-    #print (results)
+
+    l1 = [0,100,150,200,255]
+    l2 = [255,150,150,130,0]
+    l3 = [0,200,100,50,0]
+
+    lst_colors = list(zip(l1,l2,l3))
+
     make_html()
+
     while(True):
         if image_count > max_count:
             break
         else:
             filename = source + "/" + str(image_count) + ".jpg"
             img = image.Image(filename)
+
             fps=1
             if results[image_count]:
                 #print(results)
                 for i in results[image_count]:
 
-                    #new_rect = list(i.rect())
+                    #c1 = classes[i.classid()]
+                    #color = [int(c) for c in lst_colors[i]]
+                    color = [int(c) for c in lst_colors[i.classid()]]
 
-                    #if new_rect[2] > 320:
-                        #new_rect[2] = 319
-                    #new_rect = list(i.rect())
+                    #if classes[i.classid()] == "With_Helmet":
+                    a = img.draw_rectangle(i.rect(), color)
+                    a = img.draw_string(i.x(),i.y(), classes[i.classid()] + (" \n %2.1fconf" % (i.value())), color=(0,0,0), scale=1)
 
-                    #new_rect[2] = new_rect[2] - new_rect[0]
-                    #new_rect[3] = new_rect[3] - new_rect[1]
-                    #new_tuple = tuple(new_rect)
+                    #if classes[i.classid()] == "Without_Helmet":
+                        #a = img.draw_rectangle(i.rect(), color = (255, 0, 0))
+                        #a = img.draw_string(i.x(),i.y(), classes[i.classid()] + (" \n %2.1fconf" % (i.value())), color=(0,0,0), scale=1)
 
+                    #if classes[i.classid()] == "Helmet":
+                        #a = img.draw_rectangle(i.rect(), color = (255, 191, 0))
+                        #a = img.draw_string(i.x(),i.y(), classes[i.classid()] + (" \n %2.1fconf" % (i.value())), color=(0,0,0), scale=1)
 
-                    #new_tuple = tuple(new_rect)
-
-                    #i.objnum()
-                    if classes[i.classid()] == "Helmet":
-                        a = img.draw_rectangle(i.rect(), color = (0, 255, 0))
-                        a = img.draw_string(i.x(),i.y(), classes[i.classid()] + (" \n %2.1fconf" % (i.value())), color=(0,0,0), scale=1)
-
-                    elif classes[i.classid()] == "Chin_Strap":
-                        a = img.draw_rectangle(i.rect(), color = (255, 0, 0))
-                        a = img.draw_string(i.x(),i.y(), classes[i.classid()] + (" \n %2.1fconf" % (i.value())), color=(0,0,0), scale=1)
+                    #if classes[i.classid()] == "Chin_Strap":
+                        #a = img.draw_rectangle(i.rect(), color = (100, 149, 237))
+                        #a = img.draw_string(i.x(),i.y(), classes[i.classid()] + (" \n %2.1fconf" % (i.value())), color=(0,0,0), scale=1)
 
 
                     f_html.write("<tr><th>" + str(image_count) + "</th>")
@@ -349,6 +352,8 @@ def main():
                     f_html.write("<th>" + str(i.value()) + "</th>")
                     f_html.write("<th>" + '<a><img src="'+ str(image_count) + ".jpg"+'"></a>' + "</th>")
                     f_html.write("</tr>")
+
+                    a = lcd.display(img)
             else:
                 #print("Result empty")
                 f_html.write("<tr><th>" + str(image_count) + "</th>")
@@ -362,22 +367,11 @@ def main():
             path2 = dest + "/"  + str(image_count) + ".jpg"
             img.save(path2, quality=95)
 
-
-            #img = draw_string(img, 2, 200, "Limon", color=lcd.WHITE,scale=1, bg=lcd.RED)
-
-            #f_html.write("<th>" + '<a><img src="'+ str(image_count) + ".jpg"+'"></a>' + "</th>")
-            #f_html.write("</tr>")
-
             message2='<a><img src="'+ str(image_count) + ".jpg"+'"></a>'
 
-            #message='<tr><th>image_count &nbsp</th><th>x: 23 y: 21 &nbsp</th><th>w: 16222 h: 221 &nbsp</th><th>1 &nbsp</th><th>0.8518897 &nbsp </th><th><a><img src="'+ str(image_count) + ".jpg"+'"></a>&nbsp &nbsp</th></tr>'
-
-            #f_html.write(message)
-            #lcd.display(img)
             del img
             gc.collect()
 
-            #print("In annotation loop")
             image_count += 1
 
     #make_html()
