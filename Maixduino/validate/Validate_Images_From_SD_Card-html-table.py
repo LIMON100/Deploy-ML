@@ -352,7 +352,6 @@ def main():
                     f_html.write("<th>" + str(i.value()) + "</th>")
                     f_html.write("<th>" + '<a><img src="'+ str(image_count) + ".jpg"+'"></a>' + "</th>")
                     f_html.write("</tr>")
-
                     a = lcd.display(img)
             else:
                 #print("Result empty")
