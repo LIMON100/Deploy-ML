@@ -322,25 +322,11 @@ def main():
                 #print(results)
                 for i in results[image_count]:
 
-                    #c1 = classes[i.classid()]
-                    #color = [int(c) for c in lst_colors[i]]
+
                     color = [int(c) for c in lst_colors[i.classid()]]
 
-                    #if classes[i.classid()] == "With_Helmet":
                     a = img.draw_rectangle(i.rect(), color)
                     a = img.draw_string(i.x(),i.y(), classes[i.classid()] + (" \n %2.1fconf" % (i.value())), color=(0,0,0), scale=1)
-
-                    #if classes[i.classid()] == "Without_Helmet":
-                        #a = img.draw_rectangle(i.rect(), color = (255, 0, 0))
-                        #a = img.draw_string(i.x(),i.y(), classes[i.classid()] + (" \n %2.1fconf" % (i.value())), color=(0,0,0), scale=1)
-
-                    #if classes[i.classid()] == "Helmet":
-                        #a = img.draw_rectangle(i.rect(), color = (255, 191, 0))
-                        #a = img.draw_string(i.x(),i.y(), classes[i.classid()] + (" \n %2.1fconf" % (i.value())), color=(0,0,0), scale=1)
-
-                    #if classes[i.classid()] == "Chin_Strap":
-                        #a = img.draw_rectangle(i.rect(), color = (100, 149, 237))
-                        #a = img.draw_string(i.x(),i.y(), classes[i.classid()] + (" \n %2.1fconf" % (i.value())), color=(0,0,0), scale=1)
 
 
                     f_html.write("<tr><th>" + str(image_count) + "</th>")
