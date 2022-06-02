@@ -33,7 +33,7 @@ import uos
 import os
 
 
-with open("/sd/helmet_classes2.txt") as f:
+with open("/sd/foot_class.txt") as f:
     classes = f.readlines()
 
 for i in range(len(classes)):
@@ -46,22 +46,20 @@ for i in range(len(classes)):
 
 task = kpu.load(0x500000)
 
-#a = kpu.set_outputs(task, 0, 7,10,35) #mobilenet
-#a = kpu.set_outputs(task, 0, 7,7,50)
-a = kpu.set_outputs(task, 0, 7,7,45)
-#a = kpu.set_outputs(task, 0, 2,2,45)
-#a = kpu.set_outputs(task, 0, 7,7,21) #yolov3
+
+#a = kpu.set_outputs(task, 0, 7,7,45) # helmet detection
+a = kpu.set_outputs(task, 0, 7,7,30) # Foot detection
 
 anchor = (1.889, 2.5245, 2.9465, 3.94056, 3.99987, 5.3658, 5.155437, 6.92275, 6.718375, 9.01025)
 
 a = kpu.init_yolo2(task, 0.5, 0.4, 5, anchor)
 clock=time.clock()
 results = []
-source = "/sd/images" # ozgun_img valid2
+source = "/sd/imgs224" # ozgun_img valid2
 temp = "/sd/temp"
 dest = "/sd/destination" # destination_ei destination_himages destination_testhelmet224
 out = "/sd/out-txt" # out-txt_himages out-txt_testhelmet224
-max_count = 172 # 70 167
+max_count = 45 # 70 167 172
 start_count = 0
 results2 = []
 
@@ -352,6 +350,7 @@ def main():
                     f_html.write("<th>" + str(i.value()) + "</th>")
                     f_html.write("<th>" + '<a><img src="'+ str(image_count) + ".jpg"+'"></a>' + "</th>")
                     f_html.write("</tr>")
+
                     a = lcd.display(img)
             else:
                 #print("Result empty")
